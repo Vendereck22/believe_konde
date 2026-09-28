@@ -11,20 +11,28 @@ import {
   Images,
   ChevronLeft,
   ChevronRight,
-  BookOpen,
   RotateCcw,
+  Heart,
+  Crown,
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { birthdayConfig } from "@/lib/birthday-config";
 import { Cake } from "./Cake";
-import { FloatingParticles } from "./FloatingParticles";
+import { FloatingPetals } from "./FloatingPetals";
+import { LuxuryGift } from "./LuxuryGift";
 import { MusicControl, triggerGlobalMusic } from "./MusicControl";
 import { PhotoLightbox } from "./PhotoLightbox";
 import { WishesModal } from "./WishesModal";
 import { BirthdayLoader } from "./BirthdayLoader";
 
 type Stage = "welcome" | "gift" | "cake" | "wish" | "final";
-const flowers = ["✦", "✿", "♡", "✾", "✧", "❀", "♥"];
+const flowers = ["✦", "✿", "♡", "✾", "✧", "❀", "♥", "🌸"];
+
+const photoCaptions = [
+  "Sourire d'ange & douceur 🌸",
+  "Élégance & style iconique ✨",
+  "Éclat & joie de vivre 💖",
+];
 
 export function BirthdayExperience() {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,30 +55,32 @@ export function BirthdayExperience() {
   const celebrate = useCallback(() => {
     if (!reduced) {
       confetti({
-        particleCount: 130,
-        spread: 80,
+        particleCount: 140,
+        spread: 85,
         origin: { y: 0.6 },
-        colors: ["#ffe4a8", "#f9a8d4", "#c4b5fd", "#ffffff"],
+        colors: ["#ffe4a8", "#f9a8d4", "#f472b6", "#ffffff", "#ffd166"],
       });
       setTimeout(
         () =>
           confetti({
-            particleCount: 85,
+            particleCount: 90,
             angle: 60,
-            spread: 65,
+            spread: 70,
             origin: { x: 0 },
+            colors: ["#fbcfe8", "#f472b6", "#ffe4a8"],
           }),
-        400,
+        350
       );
       setTimeout(
         () =>
           confetti({
-            particleCount: 85,
+            particleCount: 90,
             angle: 120,
-            spread: 65,
+            spread: 70,
             origin: { x: 1 },
+            colors: ["#fbcfe8", "#f472b6", "#ffe4a8"],
           }),
-        700,
+        650
       );
     }
     setTimeout(() => setStage("final"), 1300);
@@ -104,7 +114,8 @@ export function BirthdayExperience() {
       const data = new Uint8Array(analyser.fftSize);
       const check = () => {
         analyser.getByteTimeDomainData(data);
-        const v = data.reduce((n, x) => n + Math.abs(x - 128), 0) / data.length;
+        const v =
+          data.reduce((n, x) => n + Math.abs(x - 128), 0) / data.length;
         if (v > 12) {
           triggerBlowing();
         } else if (!blown && !isBlowing) {
@@ -123,9 +134,7 @@ export function BirthdayExperience() {
 
   const handlePrevWish = () => {
     setCurrentWishIndex(
-      (prev) =>
-        (prev - 1 + birthdayConfig.wishes.length) %
-        birthdayConfig.wishes.length,
+      (prev) => (prev - 1 + birthdayConfig.wishes.length) % birthdayConfig.wishes.length
     );
   };
 
@@ -140,18 +149,18 @@ export function BirthdayExperience() {
     setStage("gift");
   };
 
-  useEffect(
-    () => () => stream.current?.getTracks().forEach((t) => t.stop()),
-    [],
-  );
+  useEffect(() => () => stream.current?.getTracks().forEach((t) => t.stop()), []);
 
   return (
     <div className={`experience ${stage}`}>
       <AnimatePresence>
-        {isLoading && <BirthdayLoader onLoaded={() => setIsLoading(false)} />}
+        {isLoading && (
+          <BirthdayLoader onLoaded={() => setIsLoading(false)} />
+        )}
       </AnimatePresence>
 
-      <FloatingParticles />
+      {/* Floating Rose Petals & Interactive Touch Sparkle Trail */}
+      <FloatingPetals />
       <MusicControl />
 
       {/* Rain of flowers when on final stage */}
@@ -175,13 +184,16 @@ export function BirthdayExperience() {
         {/* Stage 1: Welcome */}
         {stage === "welcome" && (
           <Scene key="welcome">
-            <Eyebrow>Pour quelqu&apos;un d&apos;exceptionnel</Eyebrow>
+            <Eyebrow>Pour une femme d&apos;exception • 21 ans d&apos;éclat</Eyebrow>
             <h1>
-              Une petite
+              Pour la plus radieuse,
               <br />
-              <em>surprise</em> t&apos;attend…
+              <em>{birthdayConfig.name}</em> ✨
             </h1>
-            <p>Prends un instant, cette expérience est créée juste pour toi.</p>
+            <p>
+              Prends un instant rien que pour toi. Cette surprise a été créée
+              pour célébrer ta beauté, ta grâce et ton grand cœur.
+            </p>
             <div className="welcome-buttons">
               <Primary onClick={goToGiftStage}>
                 <Gift size={18} />
@@ -191,37 +203,29 @@ export function BirthdayExperience() {
           </Scene>
         )}
 
-        {/* Stage 2: Gift box */}
+        {/* Stage 2: Haute Couture Luxury Gift Box */}
         {stage === "gift" && (
           <Scene key="gift">
-            <motion.div
-              className="gift"
-              animate={{ rotate: [-2, 2, -2], y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <div className="ribbon v" />
-              <div className="ribbon h" />
-              <div className="gift-lid" />
-            </motion.div>
-            <Eyebrow>un petit mystère</Eyebrow>
+            <Eyebrow>un présent tout en délicatesse</Eyebrow>
             <h2>
-              Prête à découvrir
+              Un petit trésor
               <br />
-              ce qui t&apos;attend ?
+              pour toi… 🌸
             </h2>
-            <Primary
-              onClick={() => {
+            <LuxuryGift
+              name={birthdayConfig.name}
+              onOpen={() => {
                 triggerGlobalMusic();
                 setStage("cake");
               }}
-            >
-              <Sparkles size={18} />
-              Ouvrir le cadeau
-            </Primary>
+            />
+            <p className="gift-subtext">
+              Dénoue le ruban de soie dorée pour révéler ce qui t&apos;attend.
+            </p>
           </Scene>
         )}
 
-        {/* Stage 3: Birthday Cake with Avatar */}
+        {/* Stage 3: Birthday Cake with Princess Avatar */}
         {(stage === "cake" || stage === "wish") && (
           <Scene key="cake">
             <Cake blown={blown} isBlowing={isBlowing} />
@@ -230,12 +234,12 @@ export function BirthdayExperience() {
               <>
                 <Eyebrow>ferme les yeux un instant</Eyebrow>
                 <h2>
-                  Fais un vœu… <span>✨</span>
+                  Fais un vœu secret… <span>💖</span>
                 </h2>
                 <p>
                   {isBlowing
-                    ? "Believe souffle ses bougies… ✨"
-                    : "L'avatar de Believe attend ton signal pour souffler les bougies !"}
+                    ? "Believe souffle ses bougies avec grâce… ✨"
+                    : "L'avatar royal de Believe attend ton signal pour souffler les 21 bougies !"}
                 </p>
                 <div className="actions">
                   <button
@@ -244,10 +248,7 @@ export function BirthdayExperience() {
                     disabled={isBlowing || blown}
                     id="blow-cake-button"
                   >
-                    <Wind
-                      size={19}
-                      className={isBlowing ? "animate-spin" : ""}
-                    />
+                    <Wind size={19} className={isBlowing ? "animate-spin" : ""} />
                     {isBlowing ? "Souffle en cours…" : "Souffle le gâteau 🎂💨"}
                   </button>
 
@@ -264,8 +265,8 @@ export function BirthdayExperience() {
                 </div>
                 {mic === "denied" && (
                   <small>
-                    Le micro n&apos;est pas accessible — clique simplement sur
-                    le bouton &ldquo;Souffle le gâteau&rdquo;.
+                    Le micro n&apos;est pas accessible — clique simplement sur le bouton
+                    &ldquo;Souffle le gâteau&rdquo;.
                   </small>
                 )}
               </>
@@ -277,7 +278,7 @@ export function BirthdayExperience() {
                 animate={{ opacity: 1, y: 0 }}
               >
                 <Eyebrow>chut…</Eyebrow>
-                <h2>Vœu accepté… ✨</h2>
+                <h2>Vœu confié aux étoiles… ✨</h2>
               </motion.div>
             )}
           </Scene>
@@ -286,17 +287,17 @@ export function BirthdayExperience() {
         {/* Stage 4: Final celebration */}
         {stage === "final" && (
           <Scene key="final">
-            <Eyebrow>une journée inoubliable • 21 ans</Eyebrow>
+            <Eyebrow>notre reine du jour • 21 ans d&apos;amour</Eyebrow>
             <motion.h1
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              Joyeux anniversaire
+              Joyeux 21e anniversaire
               <br />
-              <em>{birthdayConfig.name}</em> <span>❤️</span>
+              <em>{birthdayConfig.name}</em> <span>👑❤️</span>
             </motion.h1>
 
-            {/* Clickable Portrait Avatar */}
+            {/* Clickable Portrait Avatar with Crown & Halo */}
             <motion.button
               type="button"
               className="portrait portrait-interactive"
@@ -309,7 +310,7 @@ export function BirthdayExperience() {
                 damping: 13,
               }}
               onClick={() => setLightboxIndex(0)}
-              title="Cliquer pour agrandir la photo"
+              title="Cliquer pour admirer en grand écran"
               aria-label={`Agrandir la photo de ${birthdayConfig.name}`}
             >
               {birthdayConfig.photo ? (
@@ -330,12 +331,32 @@ export function BirthdayExperience() {
               </span>
             </motion.button>
 
+            {/* Romantic Love Note / Mots doux Card */}
+            <motion.div
+              className="love-letter-card"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+            >
+              <div className="love-letter-header">
+                <Crown size={15} className="text-amber-300" />
+                <span>Mots doux pour Believe</span>
+                <Heart size={14} className="text-rose-400" />
+              </div>
+              <p className="love-letter-text">
+                &ldquo;À 21 ans, le monde t&apos;appartient. Que cette année soit
+                celle de tes plus belles réussites, d&apos;une joie inaltérable
+                et d&apos;un bonheur sans nuage. Reste toujours cette femme forte,
+                lumineuse et merveilleuse.&rdquo;
+              </p>
+            </motion.div>
+
             {/* Active Wish Quote Box with Carousel controls */}
             <motion.div
               className="featured-wish-box"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.45 }}
             >
               <div className="wish-box-nav">
                 <button
@@ -347,8 +368,7 @@ export function BirthdayExperience() {
                   <ChevronLeft size={16} />
                 </button>
                 <span className="wish-counter">
-                  Souhait {currentWishIndex + 1} /{" "}
-                  {birthdayConfig.wishes.length}
+                  Pensée {currentWishIndex + 1} / {birthdayConfig.wishes.length}
                 </span>
                 <button
                   onClick={handleNextWish}
@@ -388,13 +408,12 @@ export function BirthdayExperience() {
               >
                 <Sparkles size={18} className="btn-sparkle-icon" />
                 <span>
-                  Voir tous les vœux & souhaits (
-                  {birthdayConfig.wishesDetails.length})
+                  Voir tous les vœux & souhaits ({birthdayConfig.wishesDetails.length}) ✨
                 </span>
               </button>
             </motion.div>
 
-            {/* Gallery of Memories */}
+            {/* Polaroid Photo Gallery with Pins & Captions */}
             {allPhotos.length > 0 && (
               <motion.div
                 className="gallery-section"
@@ -404,32 +423,35 @@ export function BirthdayExperience() {
               >
                 <div className="gallery-header">
                   <Images size={15} />
-                  <span>Album souvenirs</span>
+                  <span>Galerie de souvenirs précieux</span>
                 </div>
-                <div className="gallery" aria-label="Souvenirs en photo">
+                <div className="polaroid-gallery" aria-label="Souvenirs précieux en photo">
                   {allPhotos.map((src, index) => (
                     <motion.div
                       key={src}
-                      className="gallery-item-wrapper"
-                      whileHover={{ scale: 1.05, y: -4 }}
+                      className="polaroid-card"
+                      whileHover={{ scale: 1.08, y: -8, rotate: 0 }}
                       whileTap={{ scale: 0.97 }}
                       onClick={() => setLightboxIndex(index)}
                       role="button"
                       tabIndex={0}
-                      aria-label={`Agrandir la photo ${index + 1}`}
+                      aria-label={`Agrandir la photo souvenir ${index + 1}`}
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") {
                           setLightboxIndex(index);
                         }
                       }}
                     >
-                      <img
-                        src={src}
-                        alt={`Souvenir ${index + 1} de ${birthdayConfig.name}`}
-                      />
-                      <div className="gallery-hover-overlay">
-                        <Sparkles size={16} />
+                      <span className="polaroid-pin" />
+                      <div className="polaroid-photo-wrapper">
+                        <img
+                          src={src}
+                          alt={`Souvenir ${index + 1} de ${birthdayConfig.name}`}
+                        />
                       </div>
+                      <span className="polaroid-caption">
+                        {photoCaptions[index % photoCaptions.length]}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -451,7 +473,7 @@ export function BirthdayExperience() {
               <motion.a
                 className="message-link"
                 href={`https://wa.me/${birthdayConfig.whatsappPhone}?text=${encodeURIComponent(
-                  "Merci infiniment pour cette magnifique surprise pour mes 21 ans ! ❤️🎂",
+                  "Merci infiniment pour cette magnifique surprise pour mes 21 ans ! ❤️🎂✨"
                 )}`}
                 target="_blank"
                 rel="noreferrer"
@@ -494,14 +516,14 @@ export function BirthdayExperience() {
         onClose={() => setLightboxIndex(null)}
         onNext={() =>
           setLightboxIndex((prev) =>
-            prev !== null ? (prev + 1) % allPhotos.length : 0,
+            prev !== null ? (prev + 1) % allPhotos.length : 0
           )
         }
         onPrev={() =>
           setLightboxIndex((prev) =>
             prev !== null
               ? (prev - 1 + allPhotos.length) % allPhotos.length
-              : 0,
+              : 0
           )
         }
         name={birthdayConfig.name}

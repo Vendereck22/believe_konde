@@ -1347,3 +1347,347 @@ main {
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+/* ==================== ROMANTIC PETALS & TOUCH SPARKLES ==================== */
+.romantic-petals-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ==================== HAUTE COUTURE LUXURY GIFT BOX ==================== */
+.luxury-gift-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 10px 0 28px;
+  cursor: pointer;
+}
+
+.gift-butterfly {
+  position: absolute;
+  font-size: 26px;
+  filter: drop-shadow(0 0 10px rgba(249, 168, 212, 0.7));
+  pointer-events: none;
+  z-index: 5;
+}
+
+.gift-butterfly.b1 {
+  top: -24px;
+  right: -15px;
+}
+
+.gift-butterfly.b2 {
+  bottom: 15px;
+  left: -20px;
+}
+
+.luxury-gift-box {
+  width: 156px;
+  height: 140px;
+  position: relative;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 35px rgba(249, 168, 212, 0.3);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gift-halo {
+  position: absolute;
+  inset: -14px;
+  border-radius: 28px;
+  background: radial-gradient(circle, rgba(249, 189, 211, 0.35) 0%, transparent 70%);
+  animation: halo 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.gift-box-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #e87ba6 0%, #ba467b 55%, #8c2a58 100%);
+  border-radius: 16px;
+  border: 1.5px solid rgba(255, 233, 189, 0.55);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.35);
+}
+
+.gift-ribbon-vertical {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 100%;
+  background: linear-gradient(90deg, #ffe2a0 0%, #ffefc4 50%, #f7d58a 100%);
+  box-shadow: 0 0 10px rgba(255, 226, 160, 0.5);
+  z-index: 2;
+}
+
+.gift-ribbon-horizontal {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px;
+  width: 100%;
+  background: linear-gradient(180deg, #ffe2a0 0%, #ffefc4 50%, #f7d58a 100%);
+  box-shadow: 0 0 10px rgba(255, 226, 160, 0.5);
+  z-index: 2;
+}
+
+.gift-box-lid {
+  position: absolute;
+  top: -16px;
+  left: -10px;
+  right: -10px;
+  height: 34px;
+  background: linear-gradient(145deg, #f095bd 0%, #c9548b 100%);
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 233, 189, 0.65);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  z-index: 4;
+}
+
+.satin-bow {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 38px;
+}
+
+.bow-knot {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #fff2cb, #f0c36d);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 214, 108, 0.7);
+  z-index: 6;
+  border: 1px solid #fff;
+}
+
+.bow-loop {
+  position: absolute;
+  width: 32px;
+  height: 24px;
+  border-radius: 50% 50% 10% 50%;
+  background: linear-gradient(135deg, #ffe39f 0%, #f4cb75 100%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.bow-loop.left {
+  left: 8px;
+  transform: rotate(-30deg);
+}
+
+.bow-loop.right {
+  right: 8px;
+  transform: rotate(30deg) scaleX(-1);
+}
+
+.bow-ribbon-tail {
+  position: absolute;
+  top: 14px;
+  width: 10px;
+  height: 26px;
+  background: linear-gradient(180deg, #ffe39f 0%, #f4cb75 100%);
+  z-index: 4;
+  border-radius: 2px;
+}
+
+.bow-ribbon-tail.left {
+  left: 20px;
+  transform: rotate(20deg);
+}
+
+.bow-ribbon-tail.right {
+  right: 20px;
+  transform: rotate(-20deg);
+}
+
+.gift-tag-pendant {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(35, 15, 45, 0.85);
+  border: 1px solid rgba(255, 226, 160, 0.6);
+  padding: 3px 8px;
+  border-radius: 8px;
+  color: #ffe4a8;
+  font-size: 10.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+  backdrop-filter: blur(4px);
+}
+
+.gift-tap-hint {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #f7d99d;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.9;
+  letter-spacing: 0.04em;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* ==================== POLAROID PHOTO GALLERY ==================== */
+.polaroid-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+  margin: 10px 0 20px;
+}
+
+.polaroid-card {
+  background: #fffbf7;
+  padding: 8px 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.polaroid-card:nth-child(1) {
+  transform: rotate(-3deg);
+}
+
+.polaroid-card:nth-child(2) {
+  transform: rotate(1deg) translateY(-5px);
+}
+
+.polaroid-card:nth-child(3) {
+  transform: rotate(3deg);
+}
+
+.polaroid-card:hover {
+  transform: scale(1.08) rotate(0deg) translateY(-8px) !important;
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(249, 168, 212, 0.4), 0 0 25px rgba(255, 233, 189, 0.35);
+}
+
+.polaroid-pin {
+  position: absolute;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff2cb, #d49a37);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  z-index: 3;
+}
+
+.polaroid-photo-wrapper {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+  background: #f5ebe6;
+}
+
+.polaroid-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.polaroid-card:hover .polaroid-photo-wrapper img {
+  transform: scale(1.06);
+}
+
+.polaroid-caption {
+  margin-top: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4a2839;
+  letter-spacing: -0.01em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ==================== ROMANTIC LOVE NOTE ENVELOPE ==================== */
+.love-letter-card {
+  width: min(100%, 520px);
+  background: linear-gradient(135deg, rgba(255, 245, 248, 0.08) 0%, rgba(255, 235, 240, 0.04) 100%);
+  border: 1.5px solid rgba(255, 214, 108, 0.3);
+  border-radius: 20px;
+  padding: 18px 22px;
+  margin: 8px 0 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.love-letter-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd66c, #f9a8d4, transparent);
+}
+
+.love-letter-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #f7d99d;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.love-letter-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #fff4ea;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .polaroid-gallery {
+    gap: 8px;
+  }
+  .polaroid-card {
+    padding: 6px 6px 10px;
+  }
+  .polaroid-caption {
+    font-size: 9.5px;
+  }
+  .love-letter-card {
+    padding: 14px 16px;
+  }
+  .love-letter-text {
+    font-size: 14px;
+  }
+}
