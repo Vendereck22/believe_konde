@@ -21,11 +21,13 @@ import { FloatingParticles } from "./FloatingParticles";
 import { MusicControl, triggerGlobalMusic } from "./MusicControl";
 import { PhotoLightbox } from "./PhotoLightbox";
 import { WishesModal } from "./WishesModal";
+import { BirthdayLoader } from "./BirthdayLoader";
 
 type Stage = "welcome" | "gift" | "cake" | "wish" | "final";
 const flowers = ["✦", "✿", "♡", "✾", "✧", "❀", "♥"];
 
 export function BirthdayExperience() {
+  const [isLoading, setIsLoading] = useState(true);
   const [stage, setStage] = useState<Stage>("welcome");
   const [blown, setBlown] = useState(false);
   const [isBlowing, setIsBlowing] = useState(false);
@@ -58,7 +60,7 @@ export function BirthdayExperience() {
             spread: 65,
             origin: { x: 0 },
           }),
-        400
+        400,
       );
       setTimeout(
         () =>
@@ -68,7 +70,7 @@ export function BirthdayExperience() {
             spread: 65,
             origin: { x: 1 },
           }),
-        700
+        700,
       );
     }
     setTimeout(() => setStage("final"), 1300);
@@ -102,8 +104,7 @@ export function BirthdayExperience() {
       const data = new Uint8Array(analyser.fftSize);
       const check = () => {
         analyser.getByteTimeDomainData(data);
-        const v =
-          data.reduce((n, x) => n + Math.abs(x - 128), 0) / data.length;
+        const v = data.reduce((n, x) => n + Math.abs(x - 128), 0) / data.length;
         if (v > 12) {
           triggerBlowing();
         } else if (!blown && !isBlowing) {
@@ -122,7 +123,9 @@ export function BirthdayExperience() {
 
   const handlePrevWish = () => {
     setCurrentWishIndex(
-      (prev) => (prev - 1 + birthdayConfig.wishes.length) % birthdayConfig.wishes.length
+      (prev) =>
+        (prev - 1 + birthdayConfig.wishes.length) %
+        birthdayConfig.wishes.length,
     );
   };
 
@@ -137,10 +140,17 @@ export function BirthdayExperience() {
     setStage("gift");
   };
 
-  useEffect(() => () => stream.current?.getTracks().forEach((t) => t.stop()), []);
+  useEffect(
+    () => () => stream.current?.getTracks().forEach((t) => t.stop()),
+    [],
+  );
 
   return (
     <div className={`experience ${stage}`}>
+      <AnimatePresence>
+        {isLoading && <BirthdayLoader onLoaded={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
       <FloatingParticles />
       <MusicControl />
 
@@ -177,16 +187,6 @@ export function BirthdayExperience() {
                 <Gift size={18} />
                 Découvrir ma surprise
               </Primary>
-              <button
-                className="subtle-link-btn"
-                onClick={() => {
-                  triggerGlobalMusic();
-                  setStage("final");
-                }}
-              >
-                <BookOpen size={15} />
-                Accéder directement aux vœux
-              </button>
             </div>
           </Scene>
         )}
@@ -244,7 +244,10 @@ export function BirthdayExperience() {
                     disabled={isBlowing || blown}
                     id="blow-cake-button"
                   >
-                    <Wind size={19} className={isBlowing ? "animate-spin" : ""} />
+                    <Wind
+                      size={19}
+                      className={isBlowing ? "animate-spin" : ""}
+                    />
                     {isBlowing ? "Souffle en cours…" : "Souffle le gâteau 🎂💨"}
                   </button>
 
@@ -261,8 +264,8 @@ export function BirthdayExperience() {
                 </div>
                 {mic === "denied" && (
                   <small>
-                    Le micro n&apos;est pas accessible — clique simplement sur le bouton
-                    &ldquo;Souffle le gâteau&rdquo;.
+                    Le micro n&apos;est pas accessible — clique simplement sur
+                    le bouton &ldquo;Souffle le gâteau&rdquo;.
                   </small>
                 )}
               </>
@@ -344,7 +347,8 @@ export function BirthdayExperience() {
                   <ChevronLeft size={16} />
                 </button>
                 <span className="wish-counter">
-                  Souhait {currentWishIndex + 1} / {birthdayConfig.wishes.length}
+                  Souhait {currentWishIndex + 1} /{" "}
+                  {birthdayConfig.wishes.length}
                 </span>
                 <button
                   onClick={handleNextWish}
@@ -384,7 +388,8 @@ export function BirthdayExperience() {
               >
                 <Sparkles size={18} className="btn-sparkle-icon" />
                 <span>
-                  Voir tous les vœux & souhaits ({birthdayConfig.wishesDetails.length})
+                  Voir tous les vœux & souhaits (
+                  {birthdayConfig.wishesDetails.length})
                 </span>
               </button>
             </motion.div>
@@ -446,7 +451,7 @@ export function BirthdayExperience() {
               <motion.a
                 className="message-link"
                 href={`https://wa.me/${birthdayConfig.whatsappPhone}?text=${encodeURIComponent(
-                  "Merci infiniment pour cette magnifique surprise pour mes 21 ans ! ❤️🎂"
+                  "Merci infiniment pour cette magnifique surprise pour mes 21 ans ! ❤️🎂",
                 )}`}
                 target="_blank"
                 rel="noreferrer"
@@ -489,14 +494,14 @@ export function BirthdayExperience() {
         onClose={() => setLightboxIndex(null)}
         onNext={() =>
           setLightboxIndex((prev) =>
-            prev !== null ? (prev + 1) % allPhotos.length : 0
+            prev !== null ? (prev + 1) % allPhotos.length : 0,
           )
         }
         onPrev={() =>
           setLightboxIndex((prev) =>
             prev !== null
               ? (prev - 1 + allPhotos.length) % allPhotos.length
-              : 0
+              : 0,
           )
         }
         name={birthdayConfig.name}

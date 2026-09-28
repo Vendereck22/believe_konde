@@ -1152,3 +1152,198 @@ main {
     height: 84px;
   }
 }
+
+/* ==================== BIRTHDAY LOADER SCREEN ==================== */
+.birthday-loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: radial-gradient(circle at 50% 38%, #2d1845 0%, #150a25 55%, #0b0416 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.loader-ambient-glow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 168, 212, 0.28) 0%, rgba(255, 214, 108, 0.12) 40%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  animation: halo 3.8s ease-in-out infinite alternate;
+}
+
+.loader-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 420px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1.5px solid rgba(255, 229, 168, 0.28);
+  border-radius: 28px;
+  padding: 38px 28px 30px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.55), 0 0 35px rgba(249, 189, 211, 0.12);
+}
+
+.loader-emblem-wrapper {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+}
+
+.loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 214, 108, 0.7);
+  box-shadow: 0 0 16px rgba(255, 214, 108, 0.25);
+}
+
+.loader-ring.inner {
+  inset: 9px;
+  border: 1.5px solid rgba(249, 168, 212, 0.5);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.loader-emblem-core {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3d1b4c 0%, #200f30 100%);
+  border: 1.5px solid rgba(255, 229, 168, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 14px rgba(249, 168, 212, 0.3), 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.loader-monogram {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: #ffe4a8;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.loader-age {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #f9bdd3;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.loader-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(21px, 4.5vw, 26px);
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.loader-title em {
+  color: #f9bdd3;
+  font-style: italic;
+}
+
+.loader-progress-box {
+  width: 100%;
+  max-width: 310px;
+  margin-bottom: 14px;
+}
+
+.loader-progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.loader-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffd66c, #f9a8d4, #b794f4);
+  box-shadow: 0 0 14px rgba(255, 214, 108, 0.7);
+}
+
+.loader-percentage-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 0 2px;
+}
+
+.loader-percent-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f7d99d;
+  font-variant-numeric: tabular-nums;
+}
+
+.loader-sparkle {
+  color: #ffe4a8;
+}
+
+.loader-status-text {
+  font-size: 13.5px;
+  color: #e1d6ee;
+  font-style: italic;
+  margin: 0 0 18px;
+  min-height: 22px;
+  line-height: 1.4;
+}
+
+.loader-footer-hint {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-enter-btn {
+  background: linear-gradient(135deg, #ffe5a8, #f9bdd3);
+  color: #2b1127;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(249, 189, 211, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.loader-enter-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(249, 189, 211, 0.6);
+}
+
+.loader-subhint {
+  font-size: 11px;
+  color: rgba(247, 217, 157, 0.65);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
