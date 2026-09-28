@@ -34,26 +34,31 @@ export function BirthdayLoader({ onLoaded }: BirthdayLoaderProps) {
       img.src = src;
     });
 
-    // 2. Smoothly increment progress
+    // 2. Smoothly increment progress with gentle emotional pacing
     const startTime = Date.now();
-    const duration = 2200; // 2.2 seconds of emotional anticipation
+    const duration = 4800; // ~4.8 seconds so user can savor each message
 
     const timer = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const calculated = Math.min(100, Math.floor((elapsed / duration) * 100));
+      // Ease-out progress curve for natural realistic feel
+      const linear = Math.min(1, elapsed / duration);
+      // Gentle easing curve
+      const eased = Math.sin((linear * Math.PI) / 2);
+      const calculated = Math.min(100, Math.floor(eased * 100));
 
       setProgress(calculated);
 
-      if (calculated >= 100) {
+      if (elapsed >= duration) {
         clearInterval(timer);
+        setProgress(100);
         setIsReady(true);
-        // Automatic smooth dismiss after reaching 100%
+        // Automatic smooth dismiss after showing 100% and final message
         setTimeout(() => {
           triggerGlobalMusic();
           onLoaded();
-        }, 550);
+        }, 950);
       }
-    }, 35);
+    }, 40);
 
     return () => clearInterval(timer);
   }, [onLoaded]);
