@@ -20,7 +20,7 @@ export const birthdayConfig = {
     "À 21 ans, le monde s'ouvre grand devant toi. Que chacun de tes rêves devienne réalité avec éclat.",
     "Que chaque lever de soleil t'apporte la sérénité et chaque coucher de soleil la gratitude d'une journée accomplie.",
     "Tu es une personne exceptionnelle, inspirante et rayonnante. Continue de briller de mille feux.",
-    "Que la joie, l'amour inconditionnel et la bienveillance t'accompagnent à chaque pas de cette nouvelle année."
+    "Que la joie, l'amour inconditionnel et la bienveillance t'accompagnent à chaque pas de cette nouvelle année.",
   ],
   wishesDetails: [
     {
@@ -81,15 +81,15 @@ export const birthdayConfig = {
       icon: "🚀",
       title: "Avenir Radieux",
       text: "Le meilleur est encore à venir. Fais confiance à ton chemin et avance avec la certitude que de grandes réussites t'attendent.",
-    }
+    },
   ] as WishItem[],
   signature: "Avec tout mon amour ❤️",
-  whatsappPhone: "2420974072465",
+  whatsappPhone: "243974072465",
   photo: "/images/IMG_3887.jpg",
   gallery: [
     "/images/IMG_3887.jpg",
     "/images/IMG_3882.jpg",
-    "/images/IMG_3891.jpg"
+    "/images/IMG_3891.jpg",
   ],
   music: "",
 };
