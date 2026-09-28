@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["file:///Users/venderecknguala/Documents/ChatGPT/believe-konde/node_modules/next/error.js"],"sourcesContent":["module.exports = require('./dist/pages/_error')\n\n// Keep the catch-error graph lazy so default Error consumers do not load it.\nObject.defineProperty(module.exports, 'catchError', {\n  enumerable: true,\n  get() {\n    return require('./dist/client/components/catch-error').catchError\n  },\n})\n"],"names":[],"mappings":"AAAA,OAAO,OAAO;AAEd,6EAA6E;AAC7E,OAAO,cAAc,CAAC,OAAO,OAAO,EAAE,cAAc;IAClD,YAAY;IACZ;QACE,OAAO,mJAAgD,UAAU;IACnE;AACF","ignoreList":[0]}}]
+}

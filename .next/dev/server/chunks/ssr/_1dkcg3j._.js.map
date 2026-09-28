@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/venderecknguala/Documents/ChatGPT/believe-konde/app/global-error.tsx"],"sourcesContent":["\"use client\";\n\nexport default function GlobalError() {\n  return <html lang=\"fr\"><body style={{ background: \"#160d28\", color: \"white\", display: \"grid\", minHeight: \"100vh\", placeItems: \"center\", fontFamily: \"sans-serif\" }}>Une erreur inattendue est survenue.</body></html>;\n}\n"],"names":["GlobalError","lang","style","background","color","display","minHeight","placeItems","fontFamily"],"mappings":";;;;;AAAA;;AAEe,SAASA;IACtB,qBAAO,8OAAC;QAAKC,MAAK;kBAAK,cAAA,8OAAC;YAAKC,OAAO;gBAAEC,YAAY;gBAAWC,OAAO;gBAASC,SAAS;gBAAQC,WAAW;gBAASC,YAAY;gBAAUC,YAAY;YAAa;sBAAG;;;;;;;;;;;AACtK"}},
+    {"offset": {"line": 39, "column": 0}, "map": {"version":3,"sources":["file:///Users/venderecknguala/Documents/ChatGPT/believe-konde/node_modules/next/src/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.ts"],"sourcesContent":["module.exports = (\n  require('../../module.compiled') as typeof import('../../module.compiled')\n).vendored['react-ssr']!.ReactJsxDevRuntime\n"],"names":["module","exports","require","vendored","ReactJsxDevRuntime"],"mappings":"AAAAA,OAAOC,OAAO,GACZC,QAAQ,4HACRC,QAAQ,CAAC,YAAY,CAAEC,kBAAkB","ignoreList":[0]}}]
+}

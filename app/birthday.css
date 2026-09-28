@@ -1,0 +1,1154 @@
+/* Main layout & experience base */
+main {
+  width: 100%;
+  min-height: 100svh;
+}
+
+.experience {
+  width: 100%;
+  isolation: isolate;
+}
+
+.scene {
+  width: min(100%, 680px);
+  margin: auto;
+  padding: 16px 12px;
+}
+
+/* Welcome scene buttons */
+.welcome-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.subtle-link-btn {
+  background: transparent;
+  border: 1px dashed rgba(255, 233, 189, 0.35);
+  color: #f7d99d;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.subtle-link-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 233, 189, 0.7);
+  transform: translateY(-1px);
+}
+
+/* Portrait */
+.portrait {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin: 6px 0 18px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #ffe1a8, #e78db2);
+  padding: 3px;
+  box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.08), 0 15px 35px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  border: none;
+}
+
+.portrait:after {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 233, 189, 0.4);
+  animation: halo 2.8s ease-out infinite;
+  pointer-events: none;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.portrait:hover img {
+  transform: scale(1.04);
+}
+
+.portrait-badge {
+  position: absolute;
+  bottom: 0px;
+  right: 4px;
+  background: #2a153b;
+  border: 1px solid #f9c7d5;
+  color: #ffe4a8;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.portrait:hover .portrait-badge {
+  transform: scale(1.15);
+}
+
+/* Featured Wish Box */
+.featured-wish-box {
+  width: min(100%, 540px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 229, 168, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 16px 20px 14px;
+  margin: 6px 0 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.wish-box-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wish-counter {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #f7d99d;
+  font-weight: 600;
+}
+
+.wish-nav-arrow {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffe4a8;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wish-nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.08);
+}
+
+.featured-wish-box .message {
+  font-size: 15.5px;
+  line-height: 1.6;
+  font-style: italic;
+  color: #fff4ea;
+  margin: 0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button: Voir tous les souhaits */
+.wishes-button-wrapper {
+  margin: 4px 0 18px;
+  width: min(100%, 460px);
+}
+
+.view-all-wishes-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2b1127;
+  background: linear-gradient(135deg, #ffe5a8 0%, #f9bdd3 50%, #d89ac7 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 28px rgba(249, 189, 211, 0.35), 0 0 0 1px rgba(255, 229, 168, 0.3);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.view-all-wishes-btn:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.view-all-wishes-btn:hover:before {
+  transform: translateX(100%);
+}
+
+.view-all-wishes-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(249, 189, 211, 0.55), 0 0 20px rgba(255, 229, 168, 0.4);
+}
+
+.btn-sparkle-icon {
+  color: #7b2959;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* Gallery of Memories */
+.gallery-section {
+  width: min(100%, 440px);
+  margin: 6px 0 18px;
+}
+
+.gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #f7d99d;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.gallery-item-wrapper {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  background: #251433;
+}
+
+.gallery-item-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(45, 18, 55, 0.45);
+  backdrop-filter: blur(2px);
+  display: grid;
+  place-items: center;
+  color: #ffe4a8;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-item-wrapper:hover .gallery-hover-overlay {
+  opacity: 1;
+}
+
+.gallery-item-wrapper:hover img {
+  transform: scale(1.1);
+}
+
+/* Final actions row */
+.final-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.message-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 229, 168, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff2d5;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.message-link:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 229, 168, 0.8);
+}
+
+.replay-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #dfd2ec;
+  font-size: 13px;
+  padding: 11px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.replay-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Lightbox Modal */
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 7, 24, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -46px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(25, 12, 38, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.lightbox-nav.prev {
+  left: -22px;
+}
+
+.lightbox-nav.next {
+  right: -22px;
+}
+
+.lightbox-nav:hover {
+  background: rgba(249, 189, 211, 0.35);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-img-wrapper {
+  max-width: 85vw;
+  max-height: 75vh;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 233, 189, 0.3);
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-footer {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #f7d99d;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.lightbox-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.lightbox-counter {
+  opacity: 0.8;
+}
+
+/* ==================== WISHES MODAL ==================== */
+.wishes-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 7, 24, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.wishes-modal-content {
+  width: min(100%, 720px);
+  max-height: 90vh;
+  background: linear-gradient(165deg, rgba(38, 22, 58, 0.94) 0%, rgba(20, 10, 34, 0.96) 100%);
+  border: 1.5px solid rgba(255, 229, 168, 0.28);
+  border-radius: 26px;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Modal Header */
+.wishes-modal-header {
+  padding: 22px 24px 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+}
+
+.wishes-header-text {
+  flex: 1;
+}
+
+.wishes-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #f7d99d;
+  background: rgba(247, 217, 157, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(247, 217, 157, 0.25);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.wishes-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 30px);
+  margin: 0 0 4px;
+  color: #fff;
+}
+
+.wishes-title em {
+  color: #f9bdd3;
+  font-style: italic;
+}
+
+.wishes-subtitle {
+  color: #d8cde3;
+  font-size: 13.5px;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.wishes-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #d8cde3;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.wishes-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* Controls bar */
+.wishes-controls-bar {
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wishes-categories {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.category-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d8cde3;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.category-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.category-pill.active {
+  background: linear-gradient(135deg, #f9bdd3, #e78db2);
+  color: #2b1127;
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(231, 141, 178, 0.35);
+}
+
+.random-wish-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 233, 189, 0.12);
+  border: 1px solid rgba(255, 233, 189, 0.35);
+  color: #ffe4a8;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.random-wish-btn:hover {
+  background: rgba(255, 233, 189, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Wishes cards container */
+.wishes-cards-container {
+  padding: 18px 24px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  max-height: 48vh;
+}
+
+.wish-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.wish-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 229, 168, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+.wish-card.highlighted {
+  border-color: rgba(249, 189, 211, 0.3);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.wish-card.selected-flash {
+  border-color: #ffe4a8;
+  background: rgba(255, 228, 168, 0.12);
+  box-shadow: 0 0 24px rgba(255, 228, 168, 0.35);
+}
+
+.wish-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.wish-card-cat {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f7d99d;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wish-quote-icon {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.wish-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.wish-card-text {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #e2d7ec;
+  font-style: italic;
+  margin: 0 0 14px;
+  flex: 1;
+}
+
+.wish-card-actions {
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 10px;
+}
+
+.wish-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d8cde3;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.wish-action-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.wish-action-btn.whatsapp-btn {
+  background: rgba(37, 211, 102, 0.12);
+  border-color: rgba(37, 211, 102, 0.3);
+  color: #8ae4ab;
+}
+
+.wish-action-btn.whatsapp-btn:hover {
+  background: rgba(37, 211, 102, 0.22);
+  color: #bbf0cf;
+}
+
+/* Custom wish section */
+.custom-wish-section {
+  padding: 16px 24px;
+  background: rgba(14, 7, 24, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.custom-wish-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.custom-wish-header h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f7d99d;
+  margin: 0;
+}
+
+.custom-wish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-wish-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.custom-input {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.custom-input:focus {
+  border-color: #f9bdd3;
+}
+
+.custom-input.author {
+  width: 170px;
+}
+
+.custom-input.wish-text {
+  flex: 1;
+}
+
+.custom-wish-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.custom-submit-btn,
+.custom-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.custom-submit-btn {
+  background: linear-gradient(135deg, #f9bdd3, #e78db2);
+  color: #2b1127;
+  border: none;
+}
+
+.custom-submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(231, 141, 178, 0.4);
+}
+
+.custom-whatsapp-btn {
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  color: #a4f0bf;
+}
+
+.custom-whatsapp-btn:hover {
+  background: rgba(37, 211, 102, 0.25);
+  color: #fff;
+}
+
+/* Animations */
+@keyframes halo {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.22);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .scene {
+    padding: 10px 4px;
+  }
+  .portrait {
+    width: 110px;
+    height: 110px;
+  }
+  .featured-wish-box {
+    padding: 14px 16px;
+  }
+  .featured-wish-box .message {
+    font-size: 14px;
+  }
+  .view-all-wishes-btn {
+    font-size: 13.5px;
+    padding: 12px 18px;
+  }
+  .gallery {
+    gap: 8px;
+  }
+  .custom-wish-inputs {
+    flex-direction: column;
+  }
+  .custom-input.author {
+    width: 100%;
+  }
+  .wishes-cards-container {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+  .wishes-modal-header {
+    padding: 16px;
+  }
+  .wishes-controls-bar {
+    padding: 10px 14px;
+  }
+  .custom-wish-section {
+    padding: 14px;
+  }
+  .final-actions-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .message-link, .replay-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .experience {
+    padding: 40px 24px;
+  }
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 480px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait:after {
+    animation: none;
+  }
+  .btn-sparkle-icon {
+    animation: none;
+  }
+}
+
+/* ==================== CAKE AVATAR & BLOWING ANIMATION ==================== */
+.cake-stage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.cake-avatar-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -18px;
+  z-index: 12;
+  cursor: default;
+}
+
+.avatar-crown {
+  position: absolute;
+  top: -19px;
+  z-index: 5;
+  color: #ffd66c;
+  filter: drop-shadow(0 2px 8px rgba(255, 214, 108, 0.7));
+}
+
+.crown-jewel {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #ff5e84;
+  border-radius: 50%;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 6px #ff5e84;
+}
+
+.cake-avatar-circle {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #ffd66c 0%, #f9a8d4 50%, #b794f4 100%);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 22px rgba(255, 214, 108, 0.35);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.cake-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #231238;
+}
+
+.cake-avatar-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 168, 212, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+  animation: halo 3s ease-out infinite;
+}
+
+.avatar-bubble {
+  position: absolute;
+  left: 110px;
+  top: 14px;
+  background: rgba(32, 16, 50, 0.92);
+  border: 1px solid rgba(255, 229, 168, 0.45);
+  color: #ffe4a8;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 15;
+}
+
+.avatar-bubble.blowing {
+  background: rgba(231, 141, 178, 0.95);
+  color: #2b1127;
+  border-color: #fff;
+  font-weight: 700;
+  font-size: 13.5px;
+  left: 50%;
+  top: -32px;
+  transform: translateX(-50%);
+}
+
+.avatar-bubble.happy {
+  background: rgba(45, 20, 68, 0.95);
+  border-color: #f9bdd3;
+  color: #fff2d5;
+}
+
+.bubble-heart {
+  color: #ff6b8b;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+/* Wind gust particles when blowing */
+.wind-gust-effect {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 100px;
+  pointer-events: none;
+  z-index: 14;
+}
+
+.wind-stream {
+  position: absolute;
+  width: 5px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 168, 212, 0.85) 60%, transparent 100%);
+  filter: blur(0.6px);
+}
+
+.wind-stream.stream-1 {
+  left: 50%;
+  transform: translateX(-50%);
+  height: 48px;
+}
+
+.wind-stream.stream-2 {
+  left: 36%;
+  height: 42px;
+  transform: rotate(-12deg);
+}
+
+.wind-stream.stream-3 {
+  left: 64%;
+  height: 42px;
+  transform: rotate(12deg);
+}
+
+.wind-particle {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  font-size: 18px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+/* Blow Cake primary button */
+.blow-cake-btn {
+  background: linear-gradient(135deg, #ffb3c6 0%, #f687b3 45%, #d53f8c 100%) !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  padding: 15px 28px !important;
+  box-shadow: 0 12px 32px rgba(213, 63, 140, 0.45) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  letter-spacing: 0.02em;
+}
+
+.blow-cake-btn:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 18px 40px rgba(213, 63, 140, 0.6) !important;
+}
+
+.blow-cake-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Active Music Control Styles */
+.music-active {
+  background: rgba(249, 189, 211, 0.18) !important;
+  border-color: rgba(255, 229, 168, 0.6) !important;
+  color: #ffe4a8 !important;
+  box-shadow: 0 0 16px rgba(249, 189, 211, 0.3) !important;
+}
+
+.music-icon-playing {
+  animation: pulse 1.5s infinite ease-in-out;
+  color: #f9bdd3;
+}
+
+.music-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 12px;
+  margin-left: 4px;
+}
+
+.music-bars i {
+  width: 2.5px;
+  background: #f7d99d;
+  border-radius: 2px;
+  animation: soundwave 1s infinite ease-in-out alternate;
+}
+
+.music-bars i:nth-child(1) {
+  height: 40%;
+  animation-delay: 0.1s;
+}
+
+.music-bars i:nth-child(2) {
+  height: 100%;
+  animation-delay: 0.35s;
+}
+
+.music-bars i:nth-child(3) {
+  height: 60%;
+  animation-delay: 0.2s;
+}
+
+@keyframes soundwave {
+  0% {
+    height: 25%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .avatar-bubble {
+    left: 50%;
+    top: -30px;
+    transform: translateX(-50%);
+    font-size: 11.5px;
+    padding: 4px 10px;
+  }
+  .cake-avatar-circle {
+    width: 84px;
+    height: 84px;
+  }
+}
